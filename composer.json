@@ -1,0 +1,15 @@
+{
+    "name": "wcphp/tp5-alipay-sdk",
+    "description": "基于支付宝sdk_v3.3.0",
+    "type": "library",
+    "authors": [
+        {
+            "name": "weika",
+            "email": "weika@wcphp.com"
+        }
+    ],
+	"autoload": {
+        "psr-4": {"Alipay\\": "src"}
+    },
+    "require": {}
+}
