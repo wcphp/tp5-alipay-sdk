@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2016-08-03 16:10:49
  */
+
+namespace Alipay\aop\request;
+
 class AlipayCommerceCityfacilitatorStationQueryRequest
 {
 	/** 

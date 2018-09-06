@@ -1,4 +1,5 @@
 <?php
+namespace Alipay\aop;
 /**
  *   加密工具类
  *

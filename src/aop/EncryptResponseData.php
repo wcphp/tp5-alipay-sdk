@@ -7,6 +7,8 @@
  * Time: 下午8:51
  */
 
+namespace Alipay\aop;
+
 class EncryptResponseData {
 
 

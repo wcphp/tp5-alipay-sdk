@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2017-10-30 11:50:27
  */
+
+namespace Alipay\aop\request;
+
 class AlipayMarketingCardActivateurlApplyRequest
 {
 	/** 

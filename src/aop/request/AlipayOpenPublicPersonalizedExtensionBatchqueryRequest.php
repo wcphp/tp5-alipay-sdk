@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2018-05-11 19:06:52
  */
+
+namespace Alipay\aop\request;
+
 class AlipayOpenPublicPersonalizedExtensionBatchqueryRequest
 {
 

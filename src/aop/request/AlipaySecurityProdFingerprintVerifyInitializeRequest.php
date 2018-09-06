@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2017-08-02 14:25:20
  */
+
+namespace Alipay\aop\request;
+
 class AlipaySecurityProdFingerprintVerifyInitializeRequest
 {
 	/** 

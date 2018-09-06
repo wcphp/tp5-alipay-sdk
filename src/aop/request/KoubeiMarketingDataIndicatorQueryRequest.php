@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2017-12-11 19:50:04
  */
+
+namespace Alipay\aop\request;
+
 class KoubeiMarketingDataIndicatorQueryRequest
 {
 	/** 

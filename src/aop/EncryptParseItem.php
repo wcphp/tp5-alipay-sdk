@@ -7,6 +7,8 @@
  * Time: 下午8:55
  */
 
+namespace Alipay\aop;
+
 class EncryptParseItem {
 
 

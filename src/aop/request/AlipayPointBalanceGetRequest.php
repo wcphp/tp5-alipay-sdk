@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2017-04-14 19:01:40
  */
+
+namespace Alipay\aop\request;
+
 class AlipayPointBalanceGetRequest
 {
 

@@ -1,10 +1,12 @@
 <?php
-
-require_once 'AopEncrypt.php';
+namespace Alipay\aop;
 
 class AopClient {
 	//应用ID
 	public $appId;
+
+    //签约的支付宝账号对应的支付宝唯一用户号
+    public $pid;
 	
 	//私钥文件路径
 	public $rsaPrivateKeyFilePath;
@@ -307,6 +309,34 @@ class AopClient {
 		
 		return http_build_query($params);
 	}
+
+    /**
+     * 生成用于调用客户端调用支付宝接口的请求参数字符串
+     * @param $request 附加的接口请求参数
+     * @return string
+     * @author guofa.tgf
+     */
+    public function strExecute($request) {
+
+        $this->setupCharsets($request);
+
+        $params['app_id'] = $this->appId;
+        $params['sign_type'] = $this->signType;
+        $params['charset'] = $this->postCharset;
+        $params['pid'] = $this->postCharset;
+
+
+        $params = array_merge($params,$request);
+        ksort($params);
+
+        $params['sign'] = $this->generateSign($params, $this->signType);
+
+        foreach ($params as &$value) {
+            $value = $this->characet($value, $params['charset']);
+        }
+
+        return http_build_query($params);
+    }
 
 	/*
 		页面提交执行方法

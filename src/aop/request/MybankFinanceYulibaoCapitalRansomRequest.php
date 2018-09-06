@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2016-11-18 16:08:08
  */
+
+namespace Alipay\aop\request;
+
 class MybankFinanceYulibaoCapitalRansomRequest
 {
 	/** 

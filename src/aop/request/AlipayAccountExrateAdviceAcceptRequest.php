@@ -5,6 +5,9 @@
  * @author auto create
  * @since 1.0, 2016-05-23 14:55:42
  */
+
+namespace Alipay\aop\request;
+
 class AlipayAccountExrateAdviceAcceptRequest
 {
 	/** 

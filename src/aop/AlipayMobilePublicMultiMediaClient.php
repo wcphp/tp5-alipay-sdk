@@ -6,9 +6,7 @@
  * @version $Id: AlipayMobilePublicMultiMediaClient.php, v 0.1 Aug 15, 2014 10:19:01 AM yikai.hu Exp $
  */
 
-//namespace alipay\api ;
-
-include("AlipayMobilePublicMultiMediaExecute.php");
+namespace Alipay\aop;
 
 
 class AlipayMobilePublicMultiMediaClient{
