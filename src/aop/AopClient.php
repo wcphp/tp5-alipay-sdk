@@ -323,7 +323,7 @@ class AopClient {
         $params['app_id'] = $this->appId;
         $params['sign_type'] = $this->signType;
         $params['charset'] = $this->postCharset;
-        $params['pid'] = $this->postCharset;
+        $params['pid'] = $this->pid;
 
 
         $params = array_merge($params,$request);
