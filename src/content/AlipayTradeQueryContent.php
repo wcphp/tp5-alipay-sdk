@@ -21,7 +21,7 @@ class AlipayTradeQueryContent extends AlipayContentBase
     public function setTradeNo($tradeNo)
     {
         $this->tradeNo = $tradeNo;
-        $this->bizContentarr['trade_no'] = $tradeNo;
+        $this->bizContentArr['trade_no'] = $tradeNo;
     }
 
     public function getOutTradeNo()
@@ -32,7 +32,7 @@ class AlipayTradeQueryContent extends AlipayContentBase
     public function setOutTradeNo($outTradeNo)
     {
         $this->outTradeNo = $outTradeNo;
-        $this->bizContentarr['out_trade_no'] = $outTradeNo;
+        $this->bizContentArr['out_trade_no'] = $outTradeNo;
     }
 }
 

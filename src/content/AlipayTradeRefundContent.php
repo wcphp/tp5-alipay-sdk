@@ -29,7 +29,7 @@ class AlipayTradeRefundContent extends AlipayContentBase
     public function setTradeNo($tradeNo)
     {
         $this->tradeNo = $tradeNo;
-        $this->bizContentarr['trade_no'] = $tradeNo;
+        $this->bizContentArr['trade_no'] = $tradeNo;
     }
 
     public function getOutTradeNo()
@@ -40,7 +40,7 @@ class AlipayTradeRefundContent extends AlipayContentBase
     public function setOutTradeNo($outTradeNo)
     {
         $this->outTradeNo = $outTradeNo;
-        $this->bizContentarr['out_trade_no'] = $outTradeNo;
+        $this->bizContentArr['out_trade_no'] = $outTradeNo;
     }
 
     public function getRefundAmount()
@@ -51,7 +51,7 @@ class AlipayTradeRefundContent extends AlipayContentBase
     public function setRefundAmount($refundAmount)
     {
         $this->refundAmount = $refundAmount;
-        $this->bizContentarr['refund_amount'] = $refundAmount;
+        $this->bizContentArr['refund_amount'] = $refundAmount;
     }
 
     public function getRefundReason()
@@ -62,7 +62,7 @@ class AlipayTradeRefundContent extends AlipayContentBase
     public function setRefundReason($refundReason)
     {
         $this->refundReason = $refundReason;
-        $this->bizContentarr['refund_reason'] = $refundReason;
+        $this->bizContentArr['refund_reason'] = $refundReason;
     }
 
     public function getOutRequestNo()
@@ -73,7 +73,7 @@ class AlipayTradeRefundContent extends AlipayContentBase
     public function setOutRequestNo($outRequestNo)
     {
         $this->outRequestNo = $outRequestNo;
-        $this->bizContentarr['out_request_no'] = $outRequestNo;
+        $this->bizContentArr['out_request_no'] = $outRequestNo;
     }
 }
 

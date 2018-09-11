@@ -6,6 +6,8 @@ use Alipay\aop\AopClient;
 use Alipay\aop\request\AlipayCommerceCityfacilitatorDepositQueryRequest;
 use Alipay\aop\request\AlipayTradeAppPayRequest;
 use Alipay\content\AlipayDataDataserviceBillDownloadurlQueryContent;
+use Alipay\content\AlipayFundTransOrderQueryContent;
+use Alipay\content\AlipayFundTransToAccountTransferContent;
 use Alipay\content\AlipayTradeAppPayContent;
 use Alipay\content\AlipayTradeCloseContent;
 use Alipay\content\AlipayTradeFastpayRefundQueryContent;
@@ -92,11 +94,11 @@ class AopSdk{
         if (empty($tradeNo) && empty($outTradeNo)) {
             return [];
         }
-        $RequestBuilder = new AlipayTradeQueryContent();
-        $RequestBuilder->setTradeNo($tradeNo);
-        $RequestBuilder->setOutTradeNo($outTradeNo);
+        $requestBuilder = new AlipayTradeQueryContent();
+        $requestBuilder->setTradeNo($tradeNo);
+        $requestBuilder->setOutTradeNo($outTradeNo);
 
-        $result=$this->tradeResponse->Query($RequestBuilder);
+        $result=$this->tradeResponse->Query($requestBuilder);
         return $result;
     }
 
@@ -114,14 +116,14 @@ class AopSdk{
         if (empty($tradeNo) && empty($outTradeNo)) {
             return [];
         }
-        $RequestBuilder = new AlipayTradeRefundContent();
-        $RequestBuilder->setTradeNo($tradeNo);
-        $RequestBuilder->setOutTradeNo($outTradeNo);
-        $RequestBuilder->setRefundAmount($refundAmount);
-        $RequestBuilder->setRefundReason($refundReason);
-        $RequestBuilder->setOutRequestNo($outRequestNo);
+        $requestBuilder = new AlipayTradeRefundContent();
+        $requestBuilder->setTradeNo($tradeNo);
+        $requestBuilder->setOutTradeNo($outTradeNo);
+        $requestBuilder->setRefundAmount($refundAmount);
+        $requestBuilder->setRefundReason($refundReason);
+        $requestBuilder->setOutRequestNo($outRequestNo);
 
-        $result=$this->tradeResponse->Refund($RequestBuilder);
+        $result=$this->tradeResponse->Refund($requestBuilder);
         return $result;
     }
 
@@ -137,12 +139,12 @@ class AopSdk{
         if (empty($tradeNo) && empty($outTradeNo)) {
             return [];
         }
-        $RequestBuilder = new AlipayTradeFastpayRefundQueryContent();
-        $RequestBuilder->setTradeNo($tradeNo);
-        $RequestBuilder->setOutTradeNo($outTradeNo);
-        $RequestBuilder->setOutRequestNo($outRequestNo);
+        $requestBuilder = new AlipayTradeFastpayRefundQueryContent();
+        $requestBuilder->setTradeNo($tradeNo);
+        $requestBuilder->setOutTradeNo($outTradeNo);
+        $requestBuilder->setOutRequestNo($outRequestNo);
 
-        $result = $this->tradeResponse->refundQuery($RequestBuilder);
+        $result = $this->tradeResponse->refundQuery($requestBuilder);
         return $result;
     }
 
@@ -157,11 +159,11 @@ class AopSdk{
         if (empty($tradeNo) && empty($outTradeNo)) {
             return [];
         }
-        $RequestBuilder = new AlipayTradeCloseContent();
-        $RequestBuilder->setTradeNo($tradeNo);
-        $RequestBuilder->setOutTradeNo($outTradeNo);
+        $requestBuilder = new AlipayTradeCloseContent();
+        $requestBuilder->setTradeNo($tradeNo);
+        $requestBuilder->setOutTradeNo($outTradeNo);
 
-        $result=$this->tradeResponse->Close($RequestBuilder);
+        $result=$this->tradeResponse->Close($requestBuilder);
         return $result;
     }
 
@@ -173,11 +175,11 @@ class AopSdk{
      */
     public function dataDownload($billType, $billDate)
     {
-        $RequestBuilder = new AlipayDataDataserviceBillDownloadurlQueryContent();
-        $RequestBuilder->setBillType($billType);
-        $RequestBuilder->setBillDate($billDate);
+        $requestBuilder = new AlipayDataDataserviceBillDownloadurlQueryContent();
+        $requestBuilder->setBillType($billType);
+        $requestBuilder->setBillDate($billDate);
 
-        $result = $this->tradeResponse->downloadurlQuery($RequestBuilder);
+        $result = $this->tradeResponse->downloadurlQuery($requestBuilder);
         return $result;
     }
 
@@ -200,6 +202,47 @@ class AopSdk{
     {
         return $this->tradeResponse->openAuthStr();
 
+    }
+
+
+    /**
+     * 单笔转账到支付宝账户
+     * @param string $tradeNo 商家支付交易号
+     * @param string $amount  支付金额（分）
+     * @param string $payeeAccount 收款账户
+     * @param string $remark  转账备注
+     * @param string $payerShowName 付款方姓名
+     * @param string $userType 收款方账户类型：1、ALIPAY_USERID：支付宝账号对应的支付宝唯一 2、ALIPAY_LOGONID：支付宝登录号，支持邮箱和手机号格式
+     * @param string $payeeRealName 收款方真实姓名 不为空则会校验该账户在支付宝登记的实名是否与收款方真实姓名一致
+     * @return array
+     */
+    public function  singleToAccountTransfer($tradeNo, $amount,$payeeAccount,$remark='',$payerShowName='',$userType='ALIPAY_USERID', $payeeRealName='')
+    {
+        $requestBuilder = new AlipayFundTransToAccountTransferContent();
+        $requestBuilder->setOutBizNo($tradeNo);
+        $requestBuilder->setAmount($amount);
+        $requestBuilder->setPayeeAccount($payeeAccount);
+        $requestBuilder->setRemark($remark);
+        $requestBuilder->setPayerShowName($payerShowName);
+        $requestBuilder->setPayeeType($userType);
+        $requestBuilder->setPayeeRealName($payeeRealName);
+
+        return $this->tradeResponse->singleToAccount($requestBuilder);
+    }
+
+    /**
+     * 单笔转账到支付宝账户查询
+     * @param string $tradeNo 商家支付交易号
+     * @param string $orderId 支付宝交易号
+     * @return array
+     */
+    public function  singlePayQuery($tradeNo, $outTradeNo='')
+    {
+        $requestBuilder = new AlipayFundTransOrderQueryContent();
+        $requestBuilder->setOutBizNo($tradeNo);
+        $requestBuilder->setOrderId($outTradeNo);
+
+        return $this->tradeResponse->singlePayQuery($requestBuilder);
     }
 
 

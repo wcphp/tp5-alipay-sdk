@@ -2,6 +2,8 @@
 namespace Alipay;
 
 use Alipay\aop\AopClient;
+use Alipay\aop\request\AlipayFundTransOrderQueryRequest;
+use Alipay\aop\request\AlipayFundTransToaccountTransferRequest;
 use Alipay\aop\request\AlipayTradeAppPayRequest;
 use Alipay\aop\request\AlipayTradeCloseRequest;
 use Alipay\aop\request\AlipayTradeFastpayRefundQueryRequest;
@@ -78,7 +80,7 @@ class AlipayTradeService {
     public function appOrder($bizContentObj,$notifyUrl)
     {
         
-        $bizContent=$bizContentObj->getBizContent();
+        $bizContent = $bizContentObj->getBizContent();
 
         $request = new AlipayTradeAppPayRequest();
 
@@ -101,7 +103,7 @@ class AlipayTradeService {
     public function wapPay($bizContentObj,$returnUrl,$notifyUrl)
     {
 	
-		$biz_content=$bizContentObj->getBizContent();
+		$biz_content = $bizContentObj->getBizContent();
 
 		$request = new AlipayTradeWapPayRequest();
 	
@@ -110,12 +112,12 @@ class AlipayTradeService {
 		$request->setBizContent ( $biz_content );
 	
 		// 首先调用支付api
-		$response = $this->aopclientRequestExecute ($request,true);
+		$response = $this->aopClientRequestExecute ($request,true);
 		// $response = $response->alipay_trade_wap_pay_response;
 		return $response;
 	}
 
-    private function aopclientRequestExecute($request,$ispage=false)
+    private function aopClientRequestExecute($request,$ispage=false)
     {
 		$aop = new AopClient();
 		$aop->gatewayUrl = $this->gatewayUrl;
@@ -163,12 +165,12 @@ class AlipayTradeService {
  	*/
     public function Query($bizContentObj)
     {
-		$biz_content=$bizContentObj->getBizContent();
+		$biz_content = $bizContentObj->getBizContent();
 		$request = new AlipayTradeQueryRequest();
 		$request->setBizContent ( $biz_content );
 
 		// 首先调用支付api
-		$response = $this->aopclientRequestExecute ($request);
+		$response = $this->aopClientRequestExecute ($request);
 		$response = $response->alipay_trade_query_response;
 		return json_decode(json_encode($response),true);
 	}
@@ -180,12 +182,12 @@ class AlipayTradeService {
 	 */
     public function Refund($bizContentObj)
     {
-		$biz_content=$bizContentObj->getBizContent();
+		$biz_content = $bizContentObj->getBizContent();
 		$request = new AlipayTradeRefundRequest();
 		$request->setBizContent ( $biz_content );
 	
 		// 首先调用支付api
-		$response = $this->aopclientRequestExecute ($request);
+		$response = $this->aopClientRequestExecute ($request);
 		$response = $response->alipay_trade_refund_response;
 		return json_decode(json_encode($response),true);
 	}
@@ -197,13 +199,13 @@ class AlipayTradeService {
 	 */
     public function Close($bizContentObj)
     {
-		$biz_content=$bizContentObj->getBizContent();
+		$biz_content = $bizContentObj->getBizContent();
 
 		$request = new AlipayTradeCloseRequest();
 		$request->setBizContent ( $biz_content );
 	
 		// 首先调用支付api
-		$response = $this->aopclientRequestExecute ($request);
+		$response = $this->aopClientRequestExecute ($request);
 		$response = $response->alipay_trade_close_response;
 		return json_decode(json_encode($response),true);
 	}
@@ -215,13 +217,13 @@ class AlipayTradeService {
 	 */
     public function refundQuery($bizContentObj)
     {
-		$bizContent=$bizContentObj->getBizContent();
+		$bizContent = $bizContentObj->getBizContent();
 
 		$request = new AlipayTradeFastpayRefundQueryRequest();
 		$request->setBizContent ( $bizContent );
 	
 		// 首先调用支付api
-		$response = $this->aopclientRequestExecute ($request);
+		$response = $this->aopClientRequestExecute ($request);
 		return json_decode(json_encode($response->alipay_trade_fastpay_refund_query_response),true);
 	}
 	/**
@@ -231,12 +233,12 @@ class AlipayTradeService {
 	 */
     public function downloadurlQuery($bizContentObj)
     {
-        $bizContent=$bizContentObj->getBizContent();
+        $bizContent = $bizContentObj->getBizContent();
 		$request = new AlipayDataDataserviceBillDownloadurlQueryRequest();
 		$request->setBizContent ( $bizContent );
 	
 		// 首先调用支付api
-		$response = $this->aopclientRequestExecute ($request);
+		$response = $this->aopClientRequestExecute ($request);
 		$response = $response->alipay_data_dataservice_bill_downloadurl_query_response;
 		return $response;
 	}
@@ -282,6 +284,45 @@ class AlipayTradeService {
             'target_id'=>uniqid(mt_rand(0,99))
         ]);
 
+    }
+
+
+
+
+
+    /**
+     * 单笔付款到支付宝账户
+     * @return bool
+     */
+    public function singleToAccount($bizContentObj)
+    {
+        $bizContent = $bizContentObj->getBizContent();
+
+        $request = new AlipayFundTransToaccountTransferRequest();
+        $request->setBizContent ( $bizContent );
+
+        $response = $this->aopClientRequestExecute ($request);
+        $response = $response->alipay_fund_trans_toaccount_transfer_response;
+        return json_decode(json_encode($response),true);
+
+    }
+
+
+    /**
+     * alipay.fund.trans.order.query 单笔付款到支付宝账户查询
+     * @param $bizContentObj 业务参数，使用content中的对象生成。
+     * @return $response 支付宝返回的信息
+     */
+    public function singlePayQuery($bizContentObj)
+    {
+        $biz_content = $bizContentObj->getBizContent();
+        $request = new AlipayFundTransOrderQueryRequest();
+        $request->setBizContent ( $biz_content );
+
+        // 首先调用支付api
+        $response = $this->aopClientRequestExecute ($request);
+        $response = $response->alipay_fund_trans_order_query_response;
+        return json_decode(json_encode($response),true);
     }
 
 

@@ -29,7 +29,7 @@ class AlipayTradeWapPayContent extends AlipayContentBase
 
     public function __construct()
     {
-        $this->bizContentarr['productCode'] = "QUICK_WAP_PAY";
+        $this->bizContentArr['productCode'] = "QUICK_WAP_PAY";
     }
 
     public function AlipayTradeWapPayContentBuilder()
@@ -45,13 +45,13 @@ class AlipayTradeWapPayContent extends AlipayContentBase
     public function setBody($body)
     {
         $this->body = $body;
-        $this->bizContentarr['body'] = $body;
+        $this->bizContentArr['body'] = $body;
     }
 
     public function setSubject($subject)
     {
         $this->subject = $subject;
-        $this->bizContentarr['subject'] = $subject;
+        $this->bizContentArr['subject'] = $subject;
     }
 
     public function getSubject()
@@ -67,13 +67,13 @@ class AlipayTradeWapPayContent extends AlipayContentBase
     public function setOutTradeNo($outTradeNo)
     {
         $this->outTradeNo = $outTradeNo;
-        $this->bizContentarr['out_trade_no'] = $outTradeNo;
+        $this->bizContentArr['out_trade_no'] = $outTradeNo;
     }
 
     public function setTimeExpress($timeExpress)
     {
         $this->timeExpress = $timeExpress;
-        $this->bizContentarr['timeout_express'] = $timeExpress;
+        $this->bizContentArr['timeout_express'] = $timeExpress;
     }
 
     public function getTimeExpress()
@@ -84,7 +84,7 @@ class AlipayTradeWapPayContent extends AlipayContentBase
     public function setTotalAmount($totalAmount)
     {
         $this->totalAmount = $totalAmount;
-        $this->bizContentarr['total_amount'] = $totalAmount;
+        $this->bizContentArr['total_amount'] = $totalAmount;
     }
 
     public function getTotalAmount()
@@ -95,7 +95,7 @@ class AlipayTradeWapPayContent extends AlipayContentBase
     public function setSellerId($sellerId)
     {
         $this->sellerId = $sellerId;
-        $this->bizContentarr['seller_id'] = $sellerId;
+        $this->bizContentArr['seller_id'] = $sellerId;
     }
 
     public function getSellerId()

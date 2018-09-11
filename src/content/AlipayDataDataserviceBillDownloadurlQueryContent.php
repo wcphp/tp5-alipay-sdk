@@ -18,7 +18,7 @@ class AlipayDataDataserviceBillDownloadurlQueryContent extends AlipayContentBase
     public function setBillType($billType)
     {
         $this->billType = $billType;
-        $this->bizContentarr['bill_type'] = $billType;
+        $this->bizContentArr['bill_type'] = $billType;
     }
 
     public function getBillDate()
@@ -29,7 +29,7 @@ class AlipayDataDataserviceBillDownloadurlQueryContent extends AlipayContentBase
     public function setBillDate($billDate)
     {
         $this->billDate = $billDate;
-        $this->bizContentarr['bill_date'] = $billDate;
+        $this->bizContentArr['bill_date'] = $billDate;
     }
 }
 
